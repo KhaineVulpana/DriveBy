@@ -23,7 +23,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import requests
 
-class AdvancedPrivacyProtection2024:
+class PrivacyProtection2024:
     def __init__(self, config_path="privacy_config_2024.json"):
         self.config_path = config_path
         self.encryption_key = self.generate_encryption_key()
@@ -1039,7 +1039,7 @@ class AdvancedPrivacyProtection2024:
 # Integration functions for the main DriveBy system
 def apply_advanced_privacy_protection_2024(driveby_host):
     """Apply advanced 2024 privacy protection to DriveBy host"""
-    privacy = AdvancedPrivacyProtection2024()
+    privacy = PrivacyProtection2024()
 
     # Override network info methods with advanced obfuscation
     original_get_network_info = driveby_host.get_network_info
@@ -1064,7 +1064,7 @@ def apply_advanced_privacy_protection_2024(driveby_host):
 
 if __name__ == "__main__":
     # Test advanced privacy protection
-    privacy = AdvancedPrivacyProtection2024()
+    privacy = PrivacyProtection2024()
 
     print("Advanced Privacy Protection 2024 Test:")
     print("=" * 60)
