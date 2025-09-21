@@ -1,0 +1,81 @@
+# GitHub Actions workflow to build the Android APK using Buildozer (Dockerized)
+# Triggers:
+#  - Manual via "Run workflow"
+#  - On changes under android_app/ or this workflow file
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "android_app/**"
+      - ".github/workflows/android-apk.yml"
+
+concurrency:
+  group: build-android-apk-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Cache Buildozer and Python-for-Android artifacts to speed up subsequent builds
+      - name: Cache buildozer artifacts
+        uses: actions/cache@v4
+        with:
+          path: |
+            android_app/.buildozer
+            ~/.buildozer
+          key: ${{ runner.os }}-buildozer-${{ hashFiles('android_app/buildozer.spec') }}
+          restore-keys: |
+            ${{ runner.os }}-buildozer-
+
+      # Use the official Buildozer action (Docker-based) so the environment is consistent
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential git zip unzip \
+            openjdk-17-jdk python3-pip python3-venv \
+            libffi-dev libssl-dev zlib1g-dev libsqlite3-dev liblzma-dev cmake
+
+      - name: Install Buildozer via pipx
+        run: |
+          python3 -m pip install --user --upgrade pip pipx
+          python3 -m pipx ensurepath
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          python3 -m pipx install buildozer
+          python3 -m pipx inject buildozer Cython
+          buildozer --version
+
+      - name: Build APK (android debug)
+        working-directory: android_app
+        env:
+          GRADLE_OPTS: -Xmx4096m -Dorg.gradle.jvmargs=-Xmx4096m
+        run: |
+          buildozer android debug
+
+      # Upload any produced APK(s) as artifacts
+      - name: Upload APK artifact(s)
+        uses: actions/upload-artifact@v4
+        with:
+          name: DriveBy-APK
+          path: |
+            android_app/bin/*.apk
+            android_app/.buildozer/android/platform/build-*/dists/*/bin/*.apk
+          if-no-files-found: warn
+
+      # Always upload logs for inspection (even on failure)
+      - name: Upload build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: |
+            android_app/.buildozer/**/*.log
+            android_app/build_logs/**/*.log
+          if-no-files-found: ignore
