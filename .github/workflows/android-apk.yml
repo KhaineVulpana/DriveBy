@@ -40,24 +40,27 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y \
             build-essential git zip unzip \
-            openjdk-17-jdk python3-pip python3-venv python3-distutils \
+            openjdk-17-jdk python3-pip python3-venv \
             libffi-dev libssl-dev zlib1g-dev libsqlite3-dev liblzma-dev cmake
 
-      - name: Install Buildozer via pipx
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Buildozer in Python 3.11 venv
         run: |
-          python3 -m pip install --user --upgrade pip pipx
-          python3 -m pipx ensurepath
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
-          python3 -m pipx install buildozer
-          python3 -m pipx inject buildozer Cython
-          buildozer --version
+          python3.11 -m venv ~/.venvs/buildozer
+          ~/.venvs/buildozer/bin/python -m pip install --upgrade pip setuptools wheel
+          ~/.venvs/buildozer/bin/pip install buildozer Cython
+          ~/.venvs/buildozer/bin/buildozer --version
 
       - name: Build APK (android debug)
         working-directory: android_app
         env:
           GRADLE_OPTS: -Xmx4096m -Dorg.gradle.jvmargs=-Xmx4096m
         run: |
-          buildozer android debug
+          ~/.venvs/buildozer/bin/buildozer android debug
 
       # Upload any produced APK(s) as artifacts
       - name: Upload APK artifact(s)
