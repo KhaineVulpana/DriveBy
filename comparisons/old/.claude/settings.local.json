@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip --version)",
+      "Bash(pip install:*)",
+      "Bash(pip3 install:*)",
+      "Bash(pip3:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
