@@ -39,9 +39,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            build-essential git zip unzip \
+            build-essential git zip unzip rsync curl wget \
             openjdk-17-jdk python3-pip python3-venv \
-            libffi-dev libssl-dev zlib1g-dev libsqlite3-dev liblzma-dev cmake
+            autoconf libtool pkg-config gperf ccache \
+            libffi-dev libssl-dev zlib1g-dev libsqlite3-dev libbz2-dev liblzma-dev \
+            libncurses-dev cmake
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
@@ -52,14 +54,30 @@ jobs:
         run: |
           python3.11 -m venv ~/.venvs/buildozer
           ~/.venvs/buildozer/bin/python -m pip install --upgrade pip setuptools wheel
-          ~/.venvs/buildozer/bin/pip install buildozer Cython
+          ~/.venvs/buildozer/bin/pip install --upgrade buildozer Cython virtualenv
+          ~/.venvs/buildozer/bin/python -V
           ~/.venvs/buildozer/bin/buildozer --version
+          ~/.venvs/buildozer/bin/cython --version || true
+
+      - name: Verify toolchain versions
+        run: |
+          java -version
+          javac -version
+          echo "which git: $(which git)"
+          echo "which cmake: $(which cmake)"
+          echo "which pkg-config: $(which pkg-config)"
+          echo "which autoconf: $(which autoconf)"
+          echo "which libtool: $(which libtool || true)"
+          echo "python3: $(python3 -V)"
+          echo "Runner OS: $RUNNER_OS"
 
       - name: Build APK (android debug)
         working-directory: android_app
         env:
           GRADLE_OPTS: -Xmx4096m -Dorg.gradle.jvmargs=-Xmx4096m
         run: |
+          export PATH="$HOME/.venvs/buildozer/bin:$PATH"
+          cython --version || true
           ~/.venvs/buildozer/bin/buildozer android debug
 
       # Upload any produced APK(s) as artifacts

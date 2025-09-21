@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/android_app/.buildozer/android/platform/python-for-android/pythonforandroid/bootstraps/webview/build/src/build.iml" filepath="$PROJECT_DIR$/android_app/.buildozer/android/platform/python-for-android/pythonforandroid/bootstraps/webview/build/src/build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android_app/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build-arm64-v8a_armeabi-v7a.iml" filepath="$PROJECT_DIR$/android_app/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build-arm64-v8a_armeabi-v7a.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android_app/.buildozer/android/platform/python-for-android/pythonforandroid/bootstraps/webview/build/build2.iml" filepath="$PROJECT_DIR$/android_app/.buildozer/android/platform/python-for-android/pythonforandroid/bootstraps/webview/build/build2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android_app/.buildozer/android/platform/python-for-android/pythonforandroid/bootstraps/common/common.iml" filepath="$PROJECT_DIR$/android_app/.buildozer/android/platform/python-for-android/pythonforandroid/bootstraps/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/free-wifi.iml" filepath="$PROJECT_DIR$/.idea/free-wifi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android_app/.buildozer/android/platform/python-for-android/pythonforandroid/bootstraps/qt/qt.iml" filepath="$PROJECT_DIR$/android_app/.buildozer/android/platform/python-for-android/pythonforandroid/bootstraps/qt/qt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android_app/.buildozer/android/platform/python-for-android/pythonforandroid/bootstraps/sdl2/sdl2.iml" filepath="$PROJECT_DIR$/android_app/.buildozer/android/platform/python-for-android/pythonforandroid/bootstraps/sdl2/sdl2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android_app/.buildozer/android/platform/python-for-android/pythonforandroid/bootstraps/service_library/service_library.iml" filepath="$PROJECT_DIR$/android_app/.buildozer/android/platform/python-for-android/pythonforandroid/bootstraps/service_library/service_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android_app/.buildozer/android/platform/python-for-android/pythonforandroid/bootstraps/service_only/service_only.iml" filepath="$PROJECT_DIR$/android_app/.buildozer/android/platform/python-for-android/pythonforandroid/bootstraps/service_only/service_only.iml" />
+    </modules>
+  </component>
+</project>
