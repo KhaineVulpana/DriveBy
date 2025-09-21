@@ -1,16 +1,3 @@
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        // Android Gradle Plugin
-        classpath "com.android.tools.build:gradle:8.5.2"
-        // Kotlin Gradle Plugin
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24"
-    }
-}
-
 allprojects {
     repositories {
         google()
@@ -18,4 +5,5 @@ allprojects {
     }
 }
 
-// No tasks at root; app module holds the Android app config
+// Root build.gradle intentionally minimal. Plugin versions are defined in settings.gradle via pluginManagement,
+// and module uses the plugins DSL. No buildscript/classpath entries needed to avoid classpath conflicts.
