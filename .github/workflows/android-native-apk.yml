@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches:
+      - main
       - master
     paths-ignore:
       - "**/*.md"
@@ -25,6 +26,7 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
+          cache: gradle
 
       - name: Accept Android SDK licenses and install required packages
         run: |
@@ -53,8 +55,9 @@ jobs:
         run: |
           chmod +x android_native/gradlew
           mkdir -p android_native/build-logs
-          # Capture detailed logs to file and console
-          android_native/gradlew -p android_native assembleDebug --no-daemon --stacktrace --info --console=plain 2>&1 | tee android_native/build-logs/gradle-build.log
+          # Build using wrapper from the project directory (avoid -p duplication)
+          cd android_native
+          ./gradlew assembleDebug --no-daemon --stacktrace --info --console=plain 2>&1 | tee build-logs/gradle-build.log
 
       - name: Upload APK artifact(s)
         uses: actions/upload-artifact@v4
