@@ -49,10 +49,12 @@ jobs:
           ls -la android_native/gradle/wrapper || true
           ls -la android_native/ || true
 
-      - name: Build Debug APK
+      - name: Build Debug APK (capture full logs)
         run: |
           chmod +x android_native/gradlew
-          android_native/gradlew -p android_native assembleDebug --no-daemon --stacktrace
+          mkdir -p android_native/build-logs
+          # Capture detailed logs to file and console
+          android_native/gradlew -p android_native assembleDebug --no-daemon --stacktrace --info --console=plain 2>&1 | tee android_native/build-logs/gradle-build.log
 
       - name: Upload APK artifact(s)
         uses: actions/upload-artifact@v4
@@ -68,6 +70,7 @@ jobs:
         with:
           name: gradle-logs
           path: |
+            android_native/build-logs/**
             android_native/app/build/outputs/**/*.txt
             android_native/**/build/reports/**
-          if-no-files-found: ignore
+          if-no-files-found: warn
