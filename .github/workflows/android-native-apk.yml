@@ -58,13 +58,21 @@ jobs:
           # Build using wrapper from the project directory (avoid -p duplication)
           cd android_native
           ./gradlew assembleDebug --no-daemon --stacktrace --info --console=plain 2>&1 | tee build-logs/gradle-build.log
+      - name: Show built files (diagnostics)
+        if: always()
+        run: |
+          echo "Listing outputs under android_native/app/build/outputs"
+          ls -R android_native/app/build/outputs || true
+          echo "Listing any APKs under android_native"
+          find android_native -type f \( -iname "*.apk" -o -iname "*.aab" \) -print || true
 
       - name: Upload APK artifact(s)
         uses: actions/upload-artifact@v4
         with:
           name: DriveByNative-APK
           path: |
-            android_native/app/build/outputs/apk/debug/*.apk
+            android_native/**/build/outputs/apk/**/*.apk
+            android_native/**/outputs/**/*.apk
           if-no-files-found: error
 
       - name: Upload Gradle build logs (always)
