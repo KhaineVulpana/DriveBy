@@ -66,13 +66,36 @@ jobs:
           echo "Listing any APKs under android_native"
           find android_native -type f \( -iname "*.apk" -o -iname "*.aab" \) -print || true
 
-      - name: Upload APK artifact(s)
+      - name: Collect APK(s) into dist folder
+        run: |
+          mkdir -p dist/android-native
+          echo "Copying APKs from android_native into dist/android-native"
+          find android_native -type f -iname "*.apk" -exec cp {} dist/android-native/ \; || true
+          PRIMARY_APK=$(find android_native -type f -iname "*.apk" | sort | head -n 1 || true)
+          if [ -n "$PRIMARY_APK" ]; then
+            cp "$PRIMARY_APK" dist/android-native/DriveByNative-debug.apk
+            echo "Primary APK: $PRIMARY_APK -> dist/android-native/DriveByNative-debug.apk"
+          else
+            echo "No APKs were found under android_native"
+            exit 1
+          fi
+
+      - name: Upload APK artifact(s) (DriveBy-APK, standard path)
+        uses: actions/upload-artifact@v4
+        with:
+          name: DriveBy-APK
+          path: |
+            android_native/app/build/outputs/apk/debug/*.apk
+            dist/android-native/*.apk
+          if-no-files-found: error
+
+      - name: Upload APK artifact(s) (DriveByNative-APK, compatibility)
         uses: actions/upload-artifact@v4
         with:
           name: DriveByNative-APK
           path: |
-            android_native/**/build/outputs/apk/**/*.apk
-            android_native/**/outputs/**/*.apk
+            android_native/app/build/outputs/apk/debug/*.apk
+            dist/android-native/*.apk
           if-no-files-found: error
 
       - name: Upload Gradle build logs (always)
