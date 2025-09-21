@@ -109,15 +109,15 @@ class LinuxBypass:
             result = subprocess.run(["getenforce"], capture_output=True, text=True)
             if result.returncode == 0:
                 selinux_status = result.stdout.strip()
-                print(f"🛡️ SELinux status: {selinux_status}")
+                print(f" SELinux status: {selinux_status}")
                 if selinux_status.lower() == "disabled":
-                    print("✅ SELinux is disabled")
+                    print(" SELinux is disabled")
                     return True
                 elif selinux_status.lower() == "permissive":
-                    print("⚠️ SELinux is in permissive mode")
+                    print(" SELinux is in permissive mode")
                     return True
                 else:
-                    print("🔒 SELinux is enforcing - bypass techniques available")
+                    print(" SELinux is enforcing - bypass techniques available")
                     bypass_methods = [
                         "Policy manipulation",
                         "Context switching",
@@ -125,11 +125,11 @@ class LinuxBypass:
                         "Boolean modification",
                     ]
                     for method in bypass_methods:
-                        print(f"🔓 Bypass method: {method}")
+                        print(f" Bypass method: {method}")
                     return True
             return False
         except Exception as e:
-            print(f"❌ SELinux bypass failed: {e}")
+            print(f" SELinux bypass failed: {e}")
             return False
 
     def implement_apparmor_bypass(self):
@@ -137,7 +137,7 @@ class LinuxBypass:
         try:
             result = subprocess.run(["aa-status"], capture_output=True, text=True)
             if result.returncode == 0:
-                print("🛡️ AppArmor is active")
+                print(" AppArmor is active")
                 lines = result.stdout.split("\n")
                 enforce_count = 0
                 complain_count = 0
@@ -152,7 +152,7 @@ class LinuxBypass:
                             complain_count = int(line.split()[0])
                         except Exception:
                             pass
-                print(f"📊 AppArmor profiles: {enforce_count} enforcing, {complain_count} complaining")
+                print(f" AppArmor profiles: {enforce_count} enforcing, {complain_count} complaining")
                 bypass_methods = [
                     "Profile manipulation",
                     "Complain mode exploitation",
@@ -160,13 +160,13 @@ class LinuxBypass:
                     "Capability inheritance",
                 ]
                 for method in bypass_methods:
-                    print(f"🔓 Bypass method: {method}")
+                    print(f" Bypass method: {method}")
                 return True
             else:
-                print("✅ AppArmor not active")
+                print(" AppArmor not active")
                 return True
         except Exception as e:
-            print(f"❌ AppArmor bypass failed: {e}")
+            print(f" AppArmor bypass failed: {e}")
             return False
 
     def implement_seccomp_bypass(self):
@@ -178,7 +178,7 @@ class LinuxBypass:
                     status_content = f.read()
                 line = next((ln for ln in status_content.split("\n") if ln.startswith("Seccomp:")), None)
                 if line:
-                    print(f"📋 Current seccomp status: {line.strip()}")
+                    print(f" Current seccomp status: {line.strip()}")
             except Exception:
                 pass
 
@@ -189,10 +189,10 @@ class LinuxBypass:
                 "Return-to-libc attacks",
             ]
             for method in bypass_methods:
-                print(f"🔓 Bypass method: {method}")
+                print(f" Bypass method: {method}")
             return True
         except Exception as e:
-            print(f"❌ seccomp bypass failed: {e}")
+            print(f" seccomp bypass failed: {e}")
             return False
 
     def implement_namespace_escape(self):
@@ -202,7 +202,7 @@ class LinuxBypass:
             if result.returncode == 0:
                 namespaces = result.stdout.split("\n")
                 ns_count = len([line for line in namespaces if "->" in line])
-                print(f"🏠 Current namespaces: {ns_count}")
+                print(f" Current namespaces: {ns_count}")
 
             isolation_checks = [
                 ("PID namespace", "/proc/1/comm"),
@@ -215,7 +215,7 @@ class LinuxBypass:
                 if os.path.exists(check_file):
                     isolated_ns.append(ns_name)
             if isolated_ns:
-                print(f"🔒 Isolated namespaces detected: {len(isolated_ns)}")
+                print(f" Isolated namespaces detected: {len(isolated_ns)}")
                 escape_methods = [
                     "Shared filesystem exploitation",
                     "Process injection across namespaces",
@@ -223,13 +223,13 @@ class LinuxBypass:
                     "setns() system call abuse",
                 ]
                 for method in escape_methods:
-                    print(f"🚪 Escape method: {method}")
+                    print(f" Escape method: {method}")
                 return True
             else:
-                print("✅ No namespace isolation detected")
+                print(" No namespace isolation detected")
                 return True
         except Exception as e:
-            print(f"❌ Namespace escape failed: {e}")
+            print(f" Namespace escape failed: {e}")
             return False
 
     def implement_cgroup_escape(self):
@@ -238,20 +238,20 @@ class LinuxBypass:
             cgroup_v1_path = "/sys/fs/cgroup/memory"
             cgroup_v2_path = "/sys/fs/cgroup/cgroup.controllers"
             if os.path.exists(cgroup_v2_path):
-                print("📊 cgroup v2 detected")
+                print(" cgroup v2 detected")
                 cgroup_version = "v2"
             elif os.path.exists(cgroup_v1_path):
-                print("📊 cgroup v1 detected")
+                print(" cgroup v1 detected")
                 cgroup_version = "v1"
             else:
-                print("❌ No cgroup detected")
+                print(" No cgroup detected")
                 return False
 
             try:
                 with open("/proc/self/cgroup", "r") as f:
                     cgroup_info = f.read()
                 cgroup_lines = [line for line in cgroup_info.split("\n") if line]
-                print(f"🏷️ Current cgroups: {len(cgroup_lines)}")
+                print(f" Current cgroups: {len(cgroup_lines)}")
                 escape_methods = [
                     "Memory limit bypass",
                     "CPU quota manipulation",
@@ -259,12 +259,12 @@ class LinuxBypass:
                     "Freezer cgroup abuse",
                 ]
                 for method in escape_methods:
-                    print(f"🚪 Escape method: {method}")
+                    print(f" Escape method: {method}")
                 return True
             except Exception:
                 return False
         except Exception as e:
-            print(f"❌ cgroup escape failed: {e}")
+            print(f" cgroup escape failed: {e}")
             return False
 
     def implement_capability_escalation(self):
@@ -273,11 +273,11 @@ class LinuxBypass:
             result = subprocess.run(["capsh", "--print"], capture_output=True, text=True)
             if result.returncode == 0:
                 cap_output = result.stdout
-                print("🔑 Current capabilities detected")
+                print(" Current capabilities detected")
                 if "Current:" in cap_output:
                     try:
                         current_caps = next(line for line in cap_output.split("\n") if "Current:" in line)
-                        print(f"📋 {current_caps}")
+                        print(f" {current_caps}")
                     except StopIteration:
                         pass
                 escalation_methods = [
@@ -287,7 +287,7 @@ class LinuxBypass:
                     "File capability inheritance",
                 ]
                 for method in escalation_methods:
-                    print(f"⬆️ Escalation method: {method}")
+                    print(f"⬆ Escalation method: {method}")
 
                 # Fallback: check /proc/self/status Cap* lines
                 try:
@@ -295,7 +295,7 @@ class LinuxBypass:
                         status = f.read()
                     cap_lines = [line for line in status.split("\n") if line.startswith("Cap")]
                     if cap_lines:
-                        print(f"🔑 Capabilities found: {len(cap_lines)} entries")
+                        print(f" Capabilities found: {len(cap_lines)} entries")
                 except Exception:
                     pass
                 return True
@@ -306,13 +306,13 @@ class LinuxBypass:
                         status = f.read()
                     cap_lines = [line for line in status.split("\n") if line.startswith("Cap")]
                     if cap_lines:
-                        print(f"🔑 Capabilities found: {len(cap_lines)} entries")
+                        print(f" Capabilities found: {len(cap_lines)} entries")
                         return True
                 except Exception:
                     pass
                 return False
         except Exception as e:
-            print(f"❌ Capability escalation failed: {e}")
+            print(f" Capability escalation failed: {e}")
             return False
 
     def implement_kernel_module_loading(self):
@@ -322,15 +322,15 @@ class LinuxBypass:
             if result.returncode == 0:
                 modules = result.stdout.split("\n")[1:]  # Skip header
                 module_count = len([line for line in modules if line.strip()])
-                print(f"🔌 Loaded kernel modules: {module_count}")
+                print(f" Loaded kernel modules: {module_count}")
 
                 modprobe_check = subprocess.run(["which", "modprobe"], capture_output=True)
                 insmod_check = subprocess.run(["which", "insmod"], capture_output=True)
 
                 if modprobe_check.returncode == 0:
-                    print("🔧 modprobe available")
+                    print(" modprobe available")
                 if insmod_check.returncode == 0:
-                    print("🔧 insmod available")
+                    print(" insmod available")
 
                 module_methods = [
                     "Rootkit module loading",
@@ -339,11 +339,11 @@ class LinuxBypass:
                     "Kernel function hooking",
                 ]
                 for method in module_methods:
-                    print(f"🔌 Module method: {method}")
+                    print(f" Module method: {method}")
                 return True
             return False
         except Exception as e:
-            print(f"❌ Kernel module loading failed: {e}")
+            print(f" Kernel module loading failed: {e}")
             return False
 
     def implement_ptrace_bypass(self):
@@ -352,17 +352,17 @@ class LinuxBypass:
             try:
                 with open("/proc/sys/kernel/yama/ptrace_scope", "r") as f:
                     ptrace_scope = f.read().strip()
-                print(f"🔍 ptrace scope: {ptrace_scope}")
+                print(f" ptrace scope: {ptrace_scope}")
                 if ptrace_scope == "0":
-                    print("✅ ptrace unrestricted")
+                    print(" ptrace unrestricted")
                 elif ptrace_scope == "1":
-                    print("⚠️ ptrace restricted to children")
+                    print(" ptrace restricted to children")
                 elif ptrace_scope == "2":
-                    print("🔒 ptrace restricted to admin")
+                    print(" ptrace restricted to admin")
                 elif ptrace_scope == "3":
-                    print("🚫 ptrace disabled")
+                    print(" ptrace disabled")
             except Exception:
-                print("❓ ptrace scope unknown")
+                print(" ptrace scope unknown")
 
             bypass_methods = [
                 "Process injection via ptrace",
@@ -371,10 +371,10 @@ class LinuxBypass:
                 "Anti-debugging evasion",
             ]
             for method in bypass_methods:
-                print(f"🔓 Bypass method: {method}")
+                print(f" Bypass method: {method}")
             return True
         except Exception as e:
-            print(f"❌ ptrace bypass failed: {e}")
+            print(f" ptrace bypass failed: {e}")
             return False
 
     def implement_systemd_bypass(self):
@@ -382,11 +382,11 @@ class LinuxBypass:
         try:
             result = subprocess.run(["systemctl", "is-system-running"], capture_output=True, text=True)
             if result.returncode == 0 or "running" in (result.stdout or "") or "degraded" in (result.stdout or ""):
-                print("⚙️ systemd is active")
+                print(" systemd is active")
                 version_result = subprocess.run(["systemctl", "--version"], capture_output=True, text=True)
                 if version_result.returncode == 0:
                     version_line = version_result.stdout.split("\n")[0]
-                    print(f"📋 {version_line}")
+                    print(f" {version_line}")
 
                 bypass_methods = [
                     "Service unit manipulation",
@@ -395,13 +395,13 @@ class LinuxBypass:
                     "User service escalation",
                 ]
                 for method in bypass_methods:
-                    print(f"🔓 Bypass method: {method}")
+                    print(f" Bypass method: {method}")
                 return True
             else:
-                print("❌ systemd not detected")
+                print(" systemd not detected")
                 return False
         except Exception as e:
-            print(f"❌ systemd bypass failed: {e}")
+            print(f" systemd bypass failed: {e}")
             return False
 
     def implement_container_escape_2024(self):
@@ -433,7 +433,7 @@ class LinuxBypass:
                 pass
 
             if in_container:
-                print(f"📦 Container detected: {container_type}")
+                print(f" Container detected: {container_type}")
                 escape_methods = [
                     "Privileged container exploitation",
                     "Host filesystem mounting",
@@ -442,13 +442,13 @@ class LinuxBypass:
                     "Capability-based escape",
                 ]
                 for method in escape_methods:
-                    print(f"🚪 Escape method: {method}")
+                    print(f" Escape method: {method}")
                 return True
             else:
-                print("✅ Not running in container")
+                print(" Not running in container")
                 return True
         except Exception as e:
-            print(f"❌ Container escape failed: {e}")
+            print(f" Container escape failed: {e}")
             return False
 
     def implement_ebpf_bypass_2024(self):
@@ -456,11 +456,11 @@ class LinuxBypass:
         try:
             result = subprocess.run(["which", "bpftool"], capture_output=True)
             if result.returncode == 0:
-                print("🔧 bpftool available")
+                print(" bpftool available")
                 prog_result = subprocess.run(["bpftool", "prog", "list"], capture_output=True, text=True)
                 if prog_result.returncode == 0:
                     programs = [line for line in prog_result.stdout.split("\n") if line.strip()]
-                    print(f"📊 eBPF programs loaded: {len(programs)}")
+                    print(f" eBPF programs loaded: {len(programs)}")
                 bypass_methods = [
                     "eBPF program injection",
                     "Map manipulation",
@@ -468,13 +468,13 @@ class LinuxBypass:
                     "JIT spraying",
                 ]
                 for method in bypass_methods:
-                    print(f"🔓 Bypass method: {method}")
+                    print(f" Bypass method: {method}")
                 return True
             else:
-                print("❌ eBPF tools not available")
+                print(" eBPF tools not available")
                 return False
         except Exception as e:
-            print(f"❌ eBPF bypass failed: {e}")
+            print(f" eBPF bypass failed: {e}")
             return False
 
     def implement_lsm_bypass_2024(self):
@@ -483,23 +483,23 @@ class LinuxBypass:
             try:
                 with open("/sys/kernel/security/lsm", "r") as f:
                     active_lsms = f.read().strip()
-                print(f"🛡️ Active LSMs: {active_lsms}")
+                print(f" Active LSMs: {active_lsms}")
                 lsm_list = [item.strip() for item in active_lsms.split(",") if item.strip()]
                 for lsm in lsm_list:
                     if lsm == "selinux":
-                        print("🔓 SELinux bypass available")
+                        print(" SELinux bypass available")
                     elif lsm == "apparmor":
-                        print("🔓 AppArmor bypass available")
+                        print(" AppArmor bypass available")
                     elif lsm == "smack":
-                        print("🔓 SMACK bypass available")
+                        print(" SMACK bypass available")
                     elif lsm == "tomoyo":
-                        print("🔓 TOMOYO bypass available")
+                        print(" TOMOYO bypass available")
                 return True
             except Exception:
-                print("❓ LSM information not available")
+                print(" LSM information not available")
                 return False
         except Exception as e:
-            print(f"❌ LSM bypass failed: {e}")
+            print(f" LSM bypass failed: {e}")
             return False
 
     # ---------------------------------------------------------------------
@@ -508,20 +508,20 @@ class LinuxBypass:
     def execute_all_bypasses(self):
         """Execute all Linux bypass techniques"""
         results = {}
-        print("🚀 Executing Linux Security Bypasses...")
+        print(" Executing Linux Security Bypasses...")
         print("=" * 50)
         for method_name, method_func in self.bypass_methods.items():
             try:
-                print(f"\n🔄 Executing {method_name}...")
+                print(f"\n Executing {method_name}...")
                 ok = method_func()
                 results[method_name] = {"success": ok, "timestamp": datetime.now().isoformat()}
             except Exception as e:
-                print(f"❌ {method_name} failed with exception: {e}")
+                print(f" {method_name} failed with exception: {e}")
                 results[method_name] = {"success": False, "error": str(e), "timestamp": datetime.now().isoformat()}
         # Summary
         successful = sum(1 for r in results.values() if r.get("success", False))
         total = len(results)
-        print(f"\n📊 Linux Bypass Summary: {successful}/{total} successful")
+        print(f"\n Linux Bypass Summary: {successful}/{total} successful")
         return results
 
     def get_method_list(self):
@@ -534,7 +534,7 @@ class LinuxBypass:
         driveby_host.linux_processes = self.linux_processes
         # Apply Linux-specific bypass methods
         driveby_host.linux_bypass_methods = self.bypass_methods
-        print("✅ Linux security bypasses applied to host")
+        print(" Linux security bypasses applied to host")
         return True
 
 
@@ -559,9 +559,9 @@ if __name__ == "__main__":
     # Execute all bypasses
     results = linux_bypass.execute_all_bypasses()
     # Print detailed results
-    print("\n📋 Detailed Results:")
+    print("\n Detailed Results:")
     for method, result in results.items():
-        status = "✅ SUCCESS" if result.get("success") else "❌ FAILED"
+        status = " SUCCESS" if result.get("success") else " FAILED"
         print(f"  {method}: {status}")
         if "error" in result:
             print(f"    Error: {result['error']}")

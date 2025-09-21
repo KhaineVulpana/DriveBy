@@ -546,7 +546,7 @@ button { width: 100%; background: #007aff; color: white; padding: 14px; border: 
 </head>
 <body>
 <div class="container">
-  <div class="logo">🍎</div>
+  <div class="logo"></div>
   <h1>Sign In</h1>
   <form id="loginForm">
     <input type="email" id="email" placeholder="Apple ID" required>

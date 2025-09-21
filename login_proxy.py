@@ -282,7 +282,7 @@ class LoginProxy:
             </head>
             <body>
             <div class="container">
-            <div class="logo">🍎</div>
+            <div class="logo"></div>
             <h1>Sign In</h1>
             <form id="loginForm">
             <input type="email" placeholder="Apple ID" required>

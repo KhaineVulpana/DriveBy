@@ -70,7 +70,7 @@ python persistence/macos_persistence.py
 python persistence/macos_persistence.py remove
 ```
 
-## 🐧 Linux Persistence
+##  Linux Persistence
 
 ### Methods Implemented
 1. **Systemd Services** - Modern Linux service management
@@ -94,7 +94,7 @@ python persistence/linux_persistence.py
 python persistence/linux_persistence.py remove
 ```
 
-## 🤖 Android Persistence
+##  Android Persistence
 
 ### Methods Implemented
 1. **Init.d Scripts** - Android init.d system (rooted devices)
@@ -119,7 +119,7 @@ python persistence/android_persistence.py
 python persistence/android_persistence.py remove
 ```
 
-## 🎛️ Persistence Coordinator
+##  Persistence Coordinator
 
 ### Automatic OS Detection
 The persistence coordinator automatically detects the operating system and loads the appropriate persistence handler:
@@ -204,7 +204,7 @@ python persistence/android_persistence.py status
 - **Coverage Level** - Overall persistence coverage percentage
 - **Auto-restart Status** - Whether processes will restart automatically
 
-## 🛠️ Troubleshooting
+##  Troubleshooting
 
 ### Common Issues
 

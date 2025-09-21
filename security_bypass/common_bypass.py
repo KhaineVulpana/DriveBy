@@ -187,7 +187,7 @@ class CommonBypass:
                     vm_indicators.append(keyword)
 
             if vm_indicators:
-                print(f"🖥️ VM indicators detected: {vm_indicators}")
+                print(f" VM indicators detected: {vm_indicators}")
 
                 # VM evasion techniques
                 evasion_methods = [
@@ -198,19 +198,19 @@ class CommonBypass:
                 ]
 
                 for method in evasion_methods:
-                    print(f"🔄 Evasion: {method}")
+                    print(f" Evasion: {method}")
                     # Implement timing delay
                     delay = random.uniform(1, 5)
                     time.sleep(delay)
-                    print(f"⏱️ Applied timing delay: {delay:.2f}s")
+                    print(f"⏱ Applied timing delay: {delay:.2f}s")
 
                 return True
             else:
-                print("✅ No VM detected - running on real hardware")
+                print(" No VM detected - running on real hardware")
                 return True
 
         except Exception as e:
-            print(f"❌ VM detection evasion failed: {e}")
+            print(f" VM detection evasion failed: {e}")
             return False
 
     def implement_debugger_detection(self):
@@ -253,7 +253,7 @@ class CommonBypass:
                     debug_indicators.append(f"env_{env_var}")
 
             if debug_indicators:
-                print(f"🐛 Debugger indicators found: {debug_indicators}")
+                print(f" Debugger indicators found: {debug_indicators}")
                 anti_debug_methods = [
                     "Process termination",
                     "Fake execution flow",
@@ -261,14 +261,14 @@ class CommonBypass:
                     "Code obfuscation",
                 ]
                 for method in anti_debug_methods:
-                    print(f"🛡️ Anti-debug: {method}")
+                    print(f" Anti-debug: {method}")
                 return True
             else:
-                print("✅ No debugger detected")
+                print(" No debugger detected")
                 return True
 
         except Exception as e:
-            print(f"❌ Debugger detection failed: {e}")
+            print(f" Debugger detection failed: {e}")
             return False
 
     def implement_sandbox_evasion(self):
@@ -321,11 +321,11 @@ class CommonBypass:
                 sandbox_indicators.append("no_network")
 
             if sandbox_indicators:
-                print(f"📦 Sandbox indicators: {sandbox_indicators}")
-                print("🚫 Exiting gracefully to evade sandbox analysis")
+                print(f" Sandbox indicators: {sandbox_indicators}")
+                print(" Exiting gracefully to evade sandbox analysis")
                 return False  # Exit in sandbox
             else:
-                print("✅ Real environment detected")
+                print(" Real environment detected")
                 # Perform legitimate-looking activities
                 legitimate_activities = [
                     "File system enumeration",
@@ -334,12 +334,12 @@ class CommonBypass:
                     "System resource assessment",
                 ]
                 for activity in legitimate_activities:
-                    print(f"🔄 Activity: {activity}")
+                    print(f" Activity: {activity}")
                     time.sleep(random.uniform(0.1, 0.5))
                 return True
 
         except Exception as e:
-            print(f"❌ Sandbox evasion failed: {e}")
+            print(f" Sandbox evasion failed: {e}")
             return False
 
     def implement_traffic_masking(self):
@@ -365,14 +365,14 @@ class CommonBypass:
                 },
             }
 
-            print("🌐 Generating legitimate traffic patterns...")
+            print(" Generating legitimate traffic patterns...")
 
             for pattern_name, pattern_data in legitimate_patterns.items():
-                print(f"📡 Pattern: {pattern_name}")
+                print(f" Pattern: {pattern_name}")
                 print(f"  User-Agent: {pattern_data.get('user_agent', 'N/A')[:50]}...")
                 if "domains" in pattern_data:
                     for domain in pattern_data["domains"]:
-                        print(f"  🔗 Target domain: {domain}")
+                        print(f"   Target domain: {domain}")
 
                 # Simulate traffic timing patterns
                 timing_patterns = {
@@ -381,12 +381,12 @@ class CommonBypass:
                     "background_sync": [30.0, 60.0, 45.0, 90.0, 30.0],
                 }
                 chosen_pattern = random.choice(list(timing_patterns.keys()))
-                print(f"⏱️ Using timing pattern: {chosen_pattern}")
+                print(f"⏱ Using timing pattern: {chosen_pattern}")
 
             return True
 
         except Exception as e:
-            print(f"❌ Traffic masking failed: {e}")
+            print(f" Traffic masking failed: {e}")
             return False
 
     def implement_steganography(self):
@@ -399,7 +399,7 @@ class CommonBypass:
                 "http_header_steganography": {"description": "Hide data in HTTP headers", "technique": "Custom header encoding"},
             }
 
-            print("🎭 Implementing steganography methods...")
+            print(" Implementing steganography methods...")
 
             # Text steganography example
             original_text = "This is a normal message"
@@ -407,23 +407,23 @@ class CommonBypass:
 
             # Simple example: hide data in spaces
             stego_text = original_text.replace(" ", "  ")  # Double spaces encode '1'
-            print(f"📝 Text steganography: '{original_text}' -> '{stego_text}'")
+            print(f" Text steganography: '{original_text}' -> '{stego_text}'")
 
             # DNS steganography example
             domain = random.choice(self.whitelisted_domains)
             encoded_subdomain = base64.b64encode(hidden_data.encode()).decode().replace("=", "")
             stego_domain = f"{encoded_subdomain}.{domain}"
-            print(f"🌐 DNS steganography: {stego_domain}")
+            print(f" DNS steganography: {stego_domain}")
 
             # HTTP header steganography example
             encoded_header = base64.b64encode(hidden_data.encode()).decode()
             stego_headers = {"X-Request-ID": encoded_header, "X-Session-Token": secrets.token_hex(16)}
-            print(f"📡 HTTP header steganography: {stego_headers}")
+            print(f" HTTP header steganography: {stego_headers}")
 
             return True
 
         except Exception as e:
-            print(f"❌ Steganography failed: {e}")
+            print(f" Steganography failed: {e}")
             return False
 
     def implement_anti_analysis(self):
@@ -448,17 +448,17 @@ class CommonBypass:
                 },
             }
 
-            print("🔒 Implementing anti-analysis techniques...")
+            print(" Implementing anti-analysis techniques...")
 
             for technique_name, technique_info in anti_analysis_techniques.items():
-                print(f"🛡️ {technique_name}: {technique_info['description']}")
+                print(f" {technique_name}: {technique_info['description']}")
                 for method in technique_info["methods"]:
-                    print(f"  📋 Method: {method}")
+                    print(f"   Method: {method}")
 
             # Simple string obfuscation example
             sensitive_string = "sensitive_data"
             obfuscated = base64.b64encode(sensitive_string.encode()).decode()
-            print(f"🔤 String obfuscation: '{sensitive_string}' -> '{obfuscated}'")
+            print(f" String obfuscation: '{sensitive_string}' -> '{obfuscated}'")
 
             # Control flow obfuscation example
             def obfuscated_function(x):
@@ -468,12 +468,12 @@ class CommonBypass:
                 return result
 
             test_result = obfuscated_function(42)
-            print(f"🔄 Control flow obfuscation result: {test_result}")
+            print(f" Control flow obfuscation result: {test_result}")
 
             return True
 
         except Exception as e:
-            print(f"❌ Anti-analysis failed: {e}")
+            print(f" Anti-analysis failed: {e}")
             return False
 
     def implement_polymorphic_shellcode(self):
@@ -519,20 +519,20 @@ class CommonBypass:
                 versions.append(poly_version)
                 # Calculate hash to show uniqueness
                 version_hash = hashlib.sha256(poly_version).hexdigest()[:16]
-                print(f"🔄 Polymorphic version {i+1}: {len(poly_version)} bytes, hash: {version_hash}")
+                print(f" Polymorphic version {i+1}: {len(poly_version)} bytes, hash: {version_hash}")
 
-            print(f"✅ Generated {len(versions)} unique polymorphic versions")
+            print(f" Generated {len(versions)} unique polymorphic versions")
             return True
 
         except Exception as e:
-            print(f"❌ Polymorphic shellcode generation failed: {e}")
+            print(f" Polymorphic shellcode generation failed: {e}")
             return False
 
     def implement_advanced_ai_ml_evasion(self):
         """Implement AI/ML-based security evasion techniques - ACTUAL IMPLEMENTATION"""
         try:
             # Simulate adversarial ML techniques
-            print("🤖 Implementing AI/ML evasion techniques...")
+            print(" Implementing AI/ML evasion techniques...")
 
             # Behavioral pattern mimicry
             legitimate_patterns = {
@@ -549,7 +549,7 @@ class CommonBypass:
                     noise = random.uniform(-0.1, 0.1) * value
                     noisy_pattern.append(value + noise)
 
-                print(f"📊 Pattern: {pattern_name}")
+                print(f" Pattern: {pattern_name}")
                 print(f"  Original: {pattern_data[:3]}...")
                 print(f"  Mimicked: {[round(x, 2) for x in noisy_pattern[:3]]}...")
 
@@ -565,20 +565,20 @@ class CommonBypass:
             normal_behavior = [0.5, 0.3, 0.8, 0.2, 0.9]
             adversarial_behavior = generate_adversarial_sample(normal_behavior)
 
-            print("🎯 Adversarial sample generated:")
+            print(" Adversarial sample generated:")
             print(f"  Normal: {[round(x, 3) for x in normal_behavior]}")
             print(f"  Adversarial: {[round(x, 3) for x in adversarial_behavior]}")
 
             return True
 
         except Exception as e:
-            print(f"❌ AI/ML evasion failed: {e}")
+            print(f" AI/ML evasion failed: {e}")
             return False
 
     def implement_quantum_resistant_encryption(self):
         """Implement quantum-resistant encryption - ACTUAL IMPLEMENTATION"""
         try:
-            print("🔮 Implementing quantum-resistant encryption...")
+            print(" Implementing quantum-resistant encryption...")
 
             # Simulate lattice-based cryptography (Kyber-like)
             def kyber_like_keygen():
@@ -603,7 +603,7 @@ class CommonBypass:
             # Generate key pair
             private_key, (A, public_key) = kyber_like_keygen()
 
-            print("🔑 Generated quantum-resistant key pair:")
+            print(" Generated quantum-resistant key pair:")
             print(f"  Private key size: {len(private_key)} coefficients")
             print(f"  Public key size: {len(public_key)} coefficients")
 
@@ -624,20 +624,20 @@ class CommonBypass:
             test_message = "quantum_resistant_test_message"
             signature = hash_based_signature(test_message, private_key)
 
-            print("✍️ Generated hash-based signature:")
+            print(" Generated hash-based signature:")
             print(f"  Message: {test_message}")
             print(f"  Signature: {signature[:8]}... ({len(signature)} parts)")
 
             return True
 
         except Exception as e:
-            print(f"❌ Quantum-resistant encryption failed: {e}")
+            print(f" Quantum-resistant encryption failed: {e}")
             return False
 
     def implement_network_covert_channels(self):
         """Implement advanced network covert channels - ACTUAL IMPLEMENTATION"""
         try:
-            print("🕳️ Implementing network covert channels...")
+            print(" Implementing network covert channels...")
 
             # DNS covert channel
             def dns_covert_channel(data, domain):
@@ -659,7 +659,7 @@ class CommonBypass:
             test_domain = random.choice(self.whitelisted_domains)
             dns_queries = dns_covert_channel(test_data, test_domain)
 
-            print("🌐 DNS covert channel:")
+            print(" DNS covert channel:")
             print(f"  Data: {test_data}")
             print(f"  Queries: {len(dns_queries)}")
             for query in dns_queries[:2]:  # Show first 2
@@ -686,7 +686,7 @@ class CommonBypass:
             # Test HTTP header covert channel
             covert_headers = http_header_covert_channel(test_data)
 
-            print("📡 HTTP header covert channel:")
+            print(" HTTP header covert channel:")
             for header, value in covert_headers.items():
                 print(f"  {header}: {value}")
 
@@ -708,20 +708,20 @@ class CommonBypass:
             # Test timing covert channel
             timing_seq = timing_covert_channel("AB")  # Just 2 chars for demo
 
-            print("⏱️ Timing covert channel:")
+            print("⏱ Timing covert channel:")
             print("  Data: AB")
             print(f"  Timing sequence: {timing_seq[:8]}... ({len(timing_seq)} intervals)")
 
             return True
 
         except Exception as e:
-            print(f"❌ Network covert channels failed: {e}")
+            print(f" Network covert channels failed: {e}")
             return False
 
     def implement_cloud_protection_bypass(self):
         """Implement cloud-delivered protection bypass - ACTUAL IMPLEMENTATION"""
         try:
-            print("☁️ Implementing cloud protection bypass...")
+            print(" Implementing cloud protection bypass...")
 
             # Environment validation
             def validate_real_environment():
@@ -772,9 +772,9 @@ class CommonBypass:
             # Validate environment
             env_checks = validate_real_environment()
 
-            print("🔍 Environment validation:")
+            print(" Environment validation:")
             for check_name, result in env_checks:
-                status = "✅" if result else "❌"
+                status = "" if result else ""
                 print(f"  {status} {check_name}: {result}")
 
             # Reputation-based bypass
@@ -783,8 +783,8 @@ class CommonBypass:
                 trusted_domain = random.choice(self.whitelisted_domains)
                 trusted_cert = random.choice(list(self.trusted_certificates.values()))
 
-                print(f"🏆 Using trusted domain: {trusted_domain}")
-                print(f"🔒 Using trusted certificate: {trusted_cert['issuer']}")
+                print(f" Using trusted domain: {trusted_domain}")
+                print(f" Using trusted certificate: {trusted_cert['issuer']}")
                 return True
 
             reputation_result = reputation_bypass()
@@ -799,43 +799,43 @@ class CommonBypass:
                     "Registry/preference queries",
                 ]
                 for behavior in behaviors:
-                    print(f"🎭 Mimicking: {behavior}")
+                    print(f" Mimicking: {behavior}")
                     time.sleep(random.uniform(0.1, 0.3))
                 return True
 
             behavioral_result = behavioral_mimicry()
 
             if reputation_result and behavioral_result:
-                print("✅ Cloud protection bypass successful")
+                print(" Cloud protection bypass successful")
                 return True
 
             return False
 
         except Exception as e:
-            print(f"❌ Cloud protection bypass failed: {e}")
+            print(f" Cloud protection bypass failed: {e}")
             return False
 
     def execute_all_bypasses(self):
         """Execute all common bypass techniques"""
         results = {}
 
-        print("🚀 Executing Common Security Bypasses...")
+        print(" Executing Common Security Bypasses...")
         print("=" * 50)
 
         for method_name, method_func in self.bypass_methods.items():
             try:
-                print(f"\n🔄 Executing {method_name}...")
+                print(f"\n Executing {method_name}...")
                 result = method_func()
                 results[method_name] = {"success": result, "timestamp": self.get_timestamp()}
             except Exception as e:
-                print(f"❌ {method_name} failed with exception: {e}")
+                print(f" {method_name} failed with exception: {e}")
                 results[method_name] = {"success": False, "error": str(e), "timestamp": self.get_timestamp()}
 
         # Summary
         successful = sum(1 for r in results.values() if r.get("success", False))
         total = len(results)
 
-        print(f"\n📊 Common Bypass Summary: {successful}/{total} successful")
+        print(f"\n Common Bypass Summary: {successful}/{total} successful")
 
         return results
 
@@ -856,7 +856,7 @@ class CommonBypass:
         driveby_host.whitelisted_domains = self.whitelisted_domains
         driveby_host.legitimate_user_agents = self.legitimate_user_agents
 
-        print("✅ Common security bypasses applied to host")
+        print(" Common security bypasses applied to host")
         return True
 
 
@@ -884,9 +884,9 @@ if __name__ == "__main__":
     results = common_bypass.execute_all_bypasses()
 
     # Print detailed results
-    print("\n📋 Detailed Results:")
+    print("\n Detailed Results:")
     for method, result in results.items():
-        status = "✅ SUCCESS" if result.get("success") else "❌ FAILED"
+        status = " SUCCESS" if result.get("success") else " FAILED"
         print(f"  {method}: {status}")
         if "error" in result:
             print(f"    Error: {result['error']}")

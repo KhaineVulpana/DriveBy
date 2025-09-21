@@ -23,7 +23,7 @@ version = 1.0
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,kivymd,requests,flask,socketio,cryptography,numpy,psutil,netifaces,scapy,watchdog,colorama,rich,click,plyer,android
+requirements = python3,kivy,requests,plyer
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -89,7 +89,7 @@ android.whitelist =
 # 1) android.add_assets = file1.txt,image.png,music.ogg,directory/
 # 2) android.add_assets.1 = path/to/file1.txt
 # 2) android.add_assets.2 = path/to/directory2/
-android.add_assets = web/,payloads/,security_bypass/
+# android.add_assets =
 
 # (list) Gradle dependencies to add
 android.gradle_dependencies = 

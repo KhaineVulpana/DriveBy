@@ -168,7 +168,7 @@ android.archs = arm64-v8a, armeabi-v7a
 - Continues monitoring even when app is minimized
 - Survives device reboots (with proper permissions)
 
-## 🛠️ Troubleshooting
+##  Troubleshooting
 
 ### Build Issues
 

@@ -125,27 +125,27 @@ class MacOSBypass:
             },
         }
 
-        print("🍎 Executing macOS Gatekeeper bypass methods...")
+        print(" Executing macOS Gatekeeper bypass methods...")
         successful_methods = 0
 
         for method_name, method_info in bypass_methods.items():
             try:
-                print(f"🔄 {method_name}: {method_info['description']}")
+                print(f" {method_name}: {method_info['description']}")
                 # Execute the actual implementation
                 impl_name = f"implement_{method_name}"
                 if hasattr(self, impl_name):
                     result = getattr(self, impl_name)()
                     if result:
                         successful_methods += 1
-                        print(f"✅ {method_name} successful")
+                        print(f" {method_name} successful")
                     else:
-                        print(f"❌ {method_name} failed")
+                        print(f" {method_name} failed")
                 else:
-                    print(f"⚠️ {method_name} implementation not found")
+                    print(f" {method_name} implementation not found")
             except Exception as e:
-                print(f"❌ {method_name} error: {e}")
+                print(f" {method_name} error: {e}")
 
-        print(f"📊 macOS Gatekeeper bypass: {successful_methods}/{len(bypass_methods)} successful")
+        print(f" macOS Gatekeeper bypass: {successful_methods}/{len(bypass_methods)} successful")
         return successful_methods > 0
 
     def implement_xprotect_remediator_evasion(self):
@@ -164,7 +164,7 @@ class MacOSBypass:
                 old_time = time.time() - (i * 3600)  # Hours ago
                 os.utime(test_file, (old_time, old_time))
 
-                print(f"🔄 Polymorphic iteration {i}: hash changed")
+                print(f" Polymorphic iteration {i}: hash changed")
 
             # Clean up
             try:
@@ -172,10 +172,10 @@ class MacOSBypass:
             except Exception:
                 pass
 
-            print("✅ XProtect Remediator evasion successful")
+            print(" XProtect Remediator evasion successful")
             return True
         except Exception as e:
-            print(f"❌ XProtect Remediator evasion failed: {e}")
+            print(f" XProtect Remediator evasion failed: {e}")
             return False
 
     def implement_macos_tcc_bypass(self):
@@ -233,13 +233,13 @@ def bypass_tcc_permissions():
             exec(tcc_bypass, {}, local_ctx)
             result = local_ctx.get("bypass_tcc_permissions", lambda: False)()
             if result:
-                print("✅ TCC bypass successful")
+                print(" TCC bypass successful")
                 return True
             else:
-                print("❌ TCC bypass failed")
+                print(" TCC bypass failed")
                 return False
         except Exception as e:
-            print(f"❌ TCC bypass error: {e}")
+            print(f" TCC bypass error: {e}")
             return False
 
     def implement_endpoint_security_framework_evasion(self):
@@ -260,13 +260,13 @@ def bypass_tcc_permissions():
                             break
 
                 if running_trusted:
-                    print(f"🎯 Trusted processes found for injection: {len(set(running_trusted))}")
+                    print(f" Trusted processes found for injection: {len(set(running_trusted))}")
                     return True
                 else:
                     return False
             return False
         except Exception as e:
-            print(f"❌ Endpoint Security Framework evasion failed: {e}")
+            print(f" Endpoint Security Framework evasion failed: {e}")
             return False
 
     def implement_notarization_ticket_spoofing(self):
@@ -285,7 +285,7 @@ def bypass_tcc_permissions():
             with open(ticket_file, "w") as f:
                 json.dump(fake_ticket, f)
 
-            print(f"🎫 Fake notarization ticket created: {fake_ticket['uuid']}")
+            print(f" Fake notarization ticket created: {fake_ticket['uuid']}")
 
             # Clean up
             try:
@@ -295,7 +295,7 @@ def bypass_tcc_permissions():
 
             return True
         except Exception as e:
-            print(f"❌ Notarization ticket spoofing failed: {e}")
+            print(f" Notarization ticket spoofing failed: {e}")
             return False
 
     def implement_dylib_hijacking(self):
@@ -356,15 +356,15 @@ def hijack_dylib(target_app_path, malicious_dylib_path):
             # Check for install_name_tool
             result = subprocess.run(["which", "install_name_tool"], capture_output=True)
             if result.returncode == 0:
-                print("🔧 install_name_tool available for dylib hijacking")
+                print(" install_name_tool available for dylib hijacking")
                 # Test DYLD_INSERT_LIBRARIES
                 test_env = os.environ.copy()
                 test_env["DYLD_INSERT_LIBRARIES"] = "/tmp/test.dylib"
-                print("💉 DYLD_INSERT_LIBRARIES injection capability confirmed")
+                print(" DYLD_INSERT_LIBRARIES injection capability confirmed")
                 return True
             return False
         except Exception as e:
-            print(f"❌ Dylib hijacking failed: {e}")
+            print(f" Dylib hijacking failed: {e}")
             return False
 
     def implement_system_extension_masquerading(self):
@@ -392,7 +392,7 @@ def hijack_dylib(target_app_path, malicious_dylib_path):
             _ = info_plist  # placeholder usage
             return True
         except Exception as e:
-            print(f"❌ System extension masquerading failed: {e}")
+            print(f" System extension masquerading failed: {e}")
             return False
 
     def implement_sip_bypass_2024(self):
@@ -403,18 +403,18 @@ def hijack_dylib(target_app_path, malicious_dylib_path):
 
             if result.returncode == 0:
                 sip_status = result.stdout.strip()
-                print(f"🛡️ SIP Status: {sip_status}")
+                print(f" SIP Status: {sip_status}")
 
                 if "disabled" in sip_status.lower():
-                    print("✅ SIP is disabled - bypass not needed")
+                    print(" SIP is disabled - bypass not needed")
                     return True
                 else:
-                    print("⚠️ SIP is enabled - bypass techniques available")
+                    print(" SIP is enabled - bypass techniques available")
                     # In real scenario, would implement SIP bypass techniques
                     return True
             return False
         except Exception as e:
-            print(f"❌ SIP bypass failed: {e}")
+            print(f" SIP bypass failed: {e}")
             return False
 
     def implement_amfi_bypass_2024(self):
@@ -425,14 +425,14 @@ def hijack_dylib(target_app_path, malicious_dylib_path):
 
             if result.returncode == 0:
                 amfi_status = result.stdout.strip()
-                print(f"🔒 AMFI Status: {amfi_status}")
+                print(f" AMFI Status: {amfi_status}")
 
                 # AMFI bypass techniques would be implemented here
-                print("🔄 AMFI bypass techniques available")
+                print(" AMFI bypass techniques available")
                 return True
             return False
         except Exception as e:
-            print(f"❌ AMFI bypass failed: {e}")
+            print(f" AMFI bypass failed: {e}")
             return False
 
     def implement_sandbox_escape_2024(self):
@@ -442,7 +442,7 @@ def hijack_dylib(target_app_path, malicious_dylib_path):
             result = subprocess.run(["sandbox-exec", "-n", "no-network", "echo", "test"], capture_output=True, text=True)
 
             if result.returncode == 0:
-                print("📦 Sandbox execution capability detected")
+                print(" Sandbox execution capability detected")
 
                 # Sandbox escape techniques
                 escape_methods = [
@@ -453,10 +453,10 @@ def hijack_dylib(target_app_path, malicious_dylib_path):
                 ]
 
                 for method in escape_methods:
-                    print(f"🚪 Escape method available: {method}")
+                    print(f" Escape method available: {method}")
 
                 return True
             return False
         except Exception as e:
-            print(f"❌ Sandbox escape failed: {e}")
+            print(f" Sandbox escape failed: {e}")
             return False

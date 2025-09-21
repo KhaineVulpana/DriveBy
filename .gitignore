@@ -1,4 +1,42 @@
-
-
-#Ignore vscode AI rules
+# Ignore vscode AI rules
 .github\instructions\codacy.instructions.md
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+
+# Logs and runtime data
+*.log
+logs/
+collected_data/
+captures/
+
+# OS-specific cruft
+.DS_Store
+Thumbs.db
+
+# Build outputs and Android artifacts
+build/
+android_app/build/
+android_app/**/.buildozer/
+android_app/bin/
+*.apk
+*.aab
+
+# Reports / patches / scans / audit artifacts
+*.patch
+*.diff
+*.jsonl
+captured_credentials.json
+indent_audit_current.jsonl
+emoji_scan.jsonl
+emoji_scan_after.jsonl
+emoji_fix.jsonl
+diff_report.patch
+diff_names.txt

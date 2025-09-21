@@ -165,7 +165,7 @@ Endpoint: http://your-phone-ip:8080/security-status
 - Multiple certificate authorities used
 - Always appears legitimately signed
 
-## 🛠️ Technical Implementation
+##  Technical Implementation
 
 ### **Payload Delivery Methods**
 ```python

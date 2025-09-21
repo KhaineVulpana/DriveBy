@@ -336,7 +336,7 @@ rsn_pairwise=CCMP
     </div>
     <div class="main">
     <div class="card-header">
-    <div class="wifi-icon">📶</div>
+    <div class="wifi-icon"></div>
     <h1>XFINITY WiFi</h1>
     </div>
     <div class="card-body">
@@ -399,7 +399,7 @@ rsn_pairwise=CCMP
     <body>
     <div class="container">
     <div class="header">
-    <h1>📶 Free WiFi</h1>
+    <h1> Free WiFi</h1>
     <p class="subtitle">Sign in to continue</p>
     </div>
     <div class="content">
@@ -450,7 +450,7 @@ rsn_pairwise=CCMP
     <div class="container">
     <div class="card">
     <div class="header">
-    <h1>📶 Free WiFi Access</h1>
+    <h1> Free WiFi Access</h1>
     <p class="subtitle">Please sign in to continue</p>
     </div>
     <div class="content">
@@ -548,7 +548,7 @@ rsn_pairwise=CCMP
     </head>
     <body>
     <div class="container">
-    <div class="wifi-icon">📶</div>
+    <div class="wifi-icon"></div>
     <h1>Free WiFi Access</h1>
     <form method="POST" action="/auth">
     <div class="form-group">
@@ -608,7 +608,7 @@ rsn_pairwise=CCMP
             print("\n Virtual Networks Active:")
             for ssid, config in self.networks.items():
                 password_info = f"Password: {config['password']}" if config["password"] else "Open Network"
-                print(f" 📶 {ssid} - {password_info} - Port: {config['port']}")
+                print(f"  {ssid} - {password_info} - Port: {config['port']}")
 
             print("\n Captive Portal URLs:")
             for ssid, config in self.networks.items():
@@ -625,7 +625,7 @@ rsn_pairwise=CCMP
         """Stop all virtual network services"""
         try:
             self.is_running = False
-            print("🛑 Stopping virtual network services...")
+            print(" Stopping virtual network services...")
 
             # Stop servers if any were registered
             for server in self.servers.values():
@@ -664,7 +664,7 @@ def main():
                 while manager.is_running:
                     time.sleep(1)
             except KeyboardInterrupt:
-                print("\n🛑 Shutting down...")
+                print("\n Shutting down...")
                 manager.stop_all_services()
         else:
             print(" Failed to start virtual networks system")

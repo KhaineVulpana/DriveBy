@@ -50,9 +50,9 @@ python build_apk.py
 
 ### Advanced Security Features
 - **Windows Bypasses**: EDR unhooking, AMSI bypass, Windows Defender evasion
-- 🤖 **Android Bypasses**: Root hiding, SafetyNet bypass, Play Protect evasion
+-  **Android Bypasses**: Root hiding, SafetyNet bypass, Play Protect evasion
 - **macOS Bypasses**: Gatekeeper bypass, TCC bypass, XProtect evasion
-- 🐧 **Linux Bypasses**: SELinux bypass, container escape, namespace evasion
+-  **Linux Bypasses**: SELinux bypass, container escape, namespace evasion
 - **Cross-platform**: VM detection evasion, AI/ML evasion, steganography
 
 ## Requirements

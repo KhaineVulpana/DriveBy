@@ -108,11 +108,11 @@ Edit `config.json` to customize:
 ```json
 {
  "server": {
- "port": 8080, # Web server port
- "data_port": 8081 # Data collection port
+ "port": 8080,
+ "data_port": 8081
  },
  "network": {
- "scan_interval": 5, # Device scan frequency
+ "scan_interval": 5,
  "hotspot_range": "192.168.43.0/24"
  }
 }

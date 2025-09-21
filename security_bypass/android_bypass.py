@@ -587,7 +587,7 @@ class AndroidBypass:
                         print(f" Root indicators found: {len(existing)}")
                         for rf in existing:
                             hidden = rf + ".hidden"
-                            print(f"🙈 Hiding: {rf} -> {hidden}")
+                            print(f" Hiding: {rf} -> {hidden}")
                         return True
                     print(" No root indicators detected")
                     return True
@@ -635,7 +635,7 @@ class AndroidBypass:
                         print(f" Magisk components found: {len(found)}")
                         for p in found:
                             hidden = p + ".hidden"
-                            print(f"🙈 Hiding Magisk: {p} -> {hidden}")
+                            print(f" Hiding Magisk: {p} -> {hidden}")
                         return True
                     print(" No Magisk components detected")
                     return True
@@ -731,7 +731,7 @@ class AndroidBypass:
                     if r.returncode == 0:
                         z = [line.strip() for line in r.stdout.splitlines() if "zygote" in line.lower()]
                         if z:
-                            print(f"🧬 Zygote processes found: {len(z)}")
+                            print(f" Zygote processes found: {len(z)}")
                             return True
                     return False
                 except Exception:
@@ -857,7 +857,7 @@ class AndroidBypass:
                     _ = sum(i * 2 for i in range(1000))
                     elapsed = time.time() - start
                     if elapsed > 0.1:
-                        print(f"⏱️ Slow execution detected: {elapsed:.3f}s")
+                        print(f"⏱ Slow execution detected: {elapsed:.3f}s")
                         return True
                     print(f" Normal execution time: {elapsed:.3f}s")
                     return False
