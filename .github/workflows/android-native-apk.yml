@@ -4,9 +4,11 @@ name: Build Android Native APK
 on:
   workflow_dispatch:
   push:
-    paths:
-      - "android_native/**"
-      - ".github/workflows/android-native-apk.yml"
+    branches:
+      - master
+    paths-ignore:
+      - "**/*.md"
+      - ".gitignore"
 
 jobs:
   build:
